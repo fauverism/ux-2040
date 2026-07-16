@@ -13,6 +13,9 @@ No framework, no build step, no npm. The one external dependency is Chart.js,
 lazy-loaded from a pinned CDN when the data section nears the viewport.
 The site was designed and built by directing AI — which is the argument, demonstrated.
 
+**Live:** <https://fauverism.github.io/ux-2040/>
+**Repo:** <https://github.com/fauverism/ux-2040>
+
 ## Run it locally
 
 Any static server works. From this folder:
@@ -26,24 +29,29 @@ python3 -m http.server 4020
 
 ## Deploy
 
-**Netlify (fastest):** go to <https://app.netlify.com/drop> and drag this
-folder onto the page. Done.
-
-**GitHub Pages:**
+Already live on GitHub Pages (see above) — `main` deploys automatically on
+every push. To change anything, edit, commit, and push:
 
 ```sh
-git init && git add -A && git commit -m "UX 2040"
-git branch -M main
-gh repo create ux-2040 --public --source . --push
-gh api "repos/{owner}/ux-2040/pages" -f "source[branch]=main" -f "source[path]=/"
-# → https://<you>.github.io/ux-2040/
+git add -A && git commit -m "describe the change"
+git push
 ```
 
-(Or push to any repo and enable **Settings → Pages → Deploy from branch**.)
+**Mirroring elsewhere — Netlify:** go to <https://app.netlify.com/drop> and
+drag this folder onto the page. Done.
 
-**One post-deploy task:** in `index.html`, change the two `og:image` /
-`twitter:image` metas from `assets/og-image.png` to the **absolute URL**
-of your deployed site — social scrapers can't resolve relative image paths.
+**Standing up a fresh copy under a different repo:**
+
+```sh
+git init -b main && git add -A && git commit -m "UX 2040"
+gh repo create <owner>/<repo> --public --source . --push
+gh api "repos/<owner>/<repo>/pages" -X POST -f "source[branch]=main" -f "source[path]=/"
+# → https://<owner>.github.io/<repo>/
+```
+
+If you fork or rename the repo, update the `og:image` / `twitter:image` /
+canonical URLs in `index.html`'s `<head>` — social scrapers need an
+**absolute** URL, and they currently point at `fauverism.github.io/ux-2040`.
 
 ## Where to edit things
 
