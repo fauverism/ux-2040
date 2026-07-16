@@ -1,0 +1,761 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UX 2040 &mdash; Designed by machines. Directed by the few who saw it coming.</title>
+  <meta name="description" content="A year-by-year forecast of where UX and design go by 2040 as AI takes the production layer — written by a designer-engineer who has survived three platform deaths. Six beats, one fork, four futures.">
+  <meta name="author" content="Robert Fauver">
+  <meta name="theme-color" content="#f5efe1">
+
+  <!-- Social cards. og:image must become an absolute URL at deploy time. -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="UX 2040">
+  <meta property="og:description" content="Designed by machines. Directed by the few who saw it coming. A year-by-year forecast of design's next fourteen years.">
+  <meta property="og:image" content="assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="UX 2040">
+  <meta name="twitter:description" content="Designed by machines. Directed by the few who saw it coming.">
+  <meta name="twitter:image" content="assets/og-image.png">
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+  <!-- Fonts: preconnect + async load (print→all swap) so text renders
+       immediately in fallbacks; display=swap handles the upgrade. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..600&family=Space+Grotesk:wght@400..700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..600&family=Space+Grotesk:wght@400..700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet">
+  </noscript>
+
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/main.js" defer></script>
+  <script src="js/timeline.js" defer></script>
+  <script src="js/fork.js" defer></script>
+  <script src="js/charts.js" defer></script>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-head">
+    <nav class="site-nav" aria-label="Sections">
+      <a class="wordmark" href="#hero">UX&nbsp;<span class="wordmark-year">2040</span></a>
+      <ul class="nav-list">
+        <li><a class="nav-link" data-nav href="#timeline">Timeline</a></li>
+        <li><a class="nav-link" data-nav href="#fork">The&nbsp;Fork</a></li>
+        <li><a class="nav-link" data-nav href="#data">Data</a></li>
+        <li><a class="nav-link" data-nav href="#humans">Humans</a></li>
+        <li><a class="nav-link" data-nav href="#about">About</a></li>
+      </ul>
+    </nav>
+    <div class="progress" aria-hidden="true">
+      <div class="progress-bar" id="progress-bar"></div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section id="hero" class="section section--hero" tabindex="-1" aria-label="Introduction">
+      <div class="wrap">
+        <p class="eyebrow rise" style="--i: 0">A forecast &middot; 2026 &rarr; 2040</p>
+        <h1 class="hero-title rise" style="--i: 1">UX&nbsp;<span class="hero-year">2040</span></h1>
+        <p class="hero-tagline rise" style="--i: 2">Designed by machines. Directed by the few who saw it coming.</p>
+        <p class="hero-byline rise" style="--i: 3">By Robert Fauver &mdash; 25 years in design, 15 in software.</p>
+        <hr class="hero-rule rise" style="--i: 3" aria-hidden="true">
+        <p class="hero-lede rise" style="--i: 4">I&rsquo;ve redrawn the same button a thousand times. By 2040 I won&rsquo;t draw it at all &mdash; and <span class="hl">that&rsquo;s not the scary part.</span></p>
+
+        <div class="chips rise" style="--i: 5">
+          <div class="chip-row">
+            <button class="chip" type="button" id="chip-ai" data-chip aria-expanded="false" aria-controls="panel-ai">Why I&rsquo;m using AI to write this</button>
+            <button class="chip" type="button" id="chip-warning" data-chip aria-expanded="false" aria-controls="panel-warning">Prediction, or warning?</button>
+            <button class="chip" type="button" id="chip-who" data-chip aria-expanded="false" aria-controls="panel-who">Who am I to say?</button>
+            <button class="chip" type="button" id="chip-what" data-chip aria-expanded="false" aria-controls="panel-what">What even is UX in 2040?</button>
+          </div>
+          <div class="chip-panels">
+            <div class="chip-panel collapse" id="panel-ai" role="region" aria-labelledby="chip-ai">
+              <div class="collapse-inner">
+                <div class="chip-answer">
+                  <p>Because the argument is the method. Every word, chart, and line of code here was made by directing AI &mdash; the same way I&rsquo;m telling you design work will get done. Figma&rsquo;s own research says 89% of designers who leaned into AI got faster and 91% say the output got better. This site is the receipts.</p>
+                </div>
+              </div>
+            </div>
+            <div class="chip-panel collapse" id="panel-warning" role="region" aria-labelledby="chip-warning">
+              <div class="collapse-inner">
+                <div class="chip-answer">
+                  <p>Both. The World Economic Forum expects 92 million jobs displaced by 2030 and 170 million created &mdash; a net gain of 78 million. Nets don&rsquo;t save individuals: graphic design sits on the fastest-declining list while UX climbs the fastest-growing one. Which side of that churn you land on is a choice, and you make it now.</p>
+                </div>
+              </div>
+            </div>
+            <div class="chip-panel collapse" id="panel-who" role="region" aria-labelledby="chip-who">
+              <div class="collapse-inner">
+                <div class="chip-answer">
+                  <p>Twenty-five years in graphic design, fifteen writing software. I watched print die, watched responsive design kill the fixed layout, watched Flash take an entire craft down with it. This is the fourth platform shift I&rsquo;ve stood in front of. The pattern never changes: the production layer goes first, and the people who deny it go with it.</p>
+                </div>
+              </div>
+            </div>
+            <div class="chip-panel collapse" id="panel-what" role="region" aria-labelledby="chip-what">
+              <div class="collapse-inner">
+                <div class="chip-answer">
+                  <p>Not screens. By 2040 interfaces are generated in real time, act before you ask, and often serve software agents instead of people. Gartner already tracked AI-driven adaptive interfaces jumping from under 5% of new apps to 30% by 2026. UX becomes the design of behavior, constraints, and consequences &mdash; the pixels were never the point.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a class="scroll-cue rise" style="--i: 6" href="#timeline" aria-label="Scroll to the timeline">
+        <span class="scroll-cue-label">Scroll</span>
+        <span class="scroll-cue-line" aria-hidden="true"></span>
+      </a>
+    </section>
+
+    <section id="timeline" class="section section--timeline" tabindex="-1" aria-labelledby="timeline-title">
+      <div class="wrap wrap--wide">
+
+        <header class="tl-head reveal">
+          <p class="eyebrow">The timeline</p>
+          <h2 class="tl-title" id="timeline-title">2026 &rarr; 2040</h2>
+        </header>
+
+        <ol class="tl" id="tl">
+          <li class="tl-beat" id="y2026" data-beat>
+            <div class="tl-year" aria-hidden="true">2026</div>
+            <article class="tl-card reveal">
+              <h3 class="tl-headline"><span class="tl-headline-year">2026.</span> The Baseline: the production layer is already gone</h3>
+              <div class="tl-body" data-slot="body">
+                <p>I&rsquo;m writing this from 2026, and the production layer of design is already gone. Vercel&rsquo;s v0 turns a sentence into working React. Figma Make turns a prompt into a code-backed screen. Galileo drafts hi-fi interfaces in the time it takes to describe them. The first draft &mdash; the work juniors cut their teeth on &mdash; now costs nothing and arrives in seconds.</p>
+                <p>About 40% of entry-level UI tasks are automatable. Today. Not someday.<button class="fn-ref" type="button" aria-label="Dig deeper" id="fn-2026-ref" data-fn aria-expanded="false" aria-controls="fn-2026"><span aria-hidden="true">1</span></button> And the designers using these tools aren&rsquo;t suffering: 89% of those who leaned into AI say they&rsquo;re faster, and 91% say the quality went up &mdash; Figma&rsquo;s own survey of the people allegedly being replaced. The floor is rising. The bottom rung is dissolving. Both are true at once.</p>
+                <p>If your value is production speed, you&rsquo;re already competing with a prompt box. Most of us just haven&rsquo;t admitted it yet.</p>
+              </div>
+              <figure class="tl-stat" data-slot="stat">
+                <p class="tl-stat-value">40<span class="tl-stat-unit">%</span></p>
+                <figcaption class="tl-stat-caption">of entry-level UI tasks: automatable &mdash; today. <span class="tl-stat-source">Source: DigitalDefynd</span></figcaption>
+              </figure>
+              <aside class="fn collapse" id="fn-2026" aria-labelledby="fn-2026-ref">
+                <div class="collapse-inner">
+                  <div class="fn-content">
+                    <p><span class="fn-num" aria-hidden="true">1</span> Which tasks, exactly: wireframing, resizing for breakpoints, color and type variants, first-draft layouts, button and microcopy. Pattern work &mdash; everything with a precedent. That&rsquo;s why juniors feel it first: the junior job <em>is</em> the patterned work. You used to learn taste through ten thousand reps of exactly what the machine now does in seconds. The rung you climbed on is the one that dissolved. (The ~40% figure is DigitalDefynd&rsquo;s analysis; treat it as directional.)</p>
+                                      <p class="fn-src"><a href="#src-digitaldefynd">Source: DigitalDefynd &darr;</a></p>
+                  </div>
+                </div>
+              </aside>
+            </article>
+          </li>
+
+          <li class="tl-beat" id="y2028" data-beat>
+            <div class="tl-year" aria-hidden="true">2028</div>
+            <article class="tl-card reveal">
+              <h3 class="tl-headline"><span class="tl-headline-year">2028.</span> The Great Compression</h3>
+              <div class="tl-body" data-slot="body">
+                <p>The junior rung didn&rsquo;t shrink. It collapsed. One designer directing a fleet of agents now ships what a team of five shipped in 2026 &mdash; faster, cheaper, no standups. Nobody announced it. Headcount just never came back.</p>
+                <p>Hiring flipped with it. Tool skill became table stakes nobody pays extra for; judgment became the interview.<button class="fn-ref" type="button" aria-label="Dig deeper" id="fn-2028-ref" data-fn aria-expanded="false" aria-controls="fn-2028"><span aria-hidden="true">2</span></button> Meanwhile the interfaces themselves stopped holding still. Gartner clocked AI-driven adaptive interfaces at 30% of new apps in 2026, up from under 5% two years earlier. By 2028, adaptive isn&rsquo;t the edge case. It&rsquo;s the default.</p>
+                <p>None of this is malice. It&rsquo;s arithmetic &mdash; five salaries against one salary plus compute. You already know how that meeting ends.</p>
+              </div>
+              <figure class="tl-stat" data-slot="stat">
+                <p class="tl-stat-value">30<span class="tl-stat-unit">%</span></p>
+                <figcaption class="tl-stat-caption">of new apps used AI-driven adaptive interfaces by 2026 &mdash; up from under 5% two years earlier. By 2028 it&rsquo;s not the edge; it&rsquo;s the default. <span class="tl-stat-source">Source: Gartner</span></figcaption>
+              </figure>
+              <aside class="fn collapse" id="fn-2028" aria-labelledby="fn-2028-ref">
+                <div class="collapse-inner">
+                  <div class="fn-content">
+                    <p><span class="fn-num" aria-hidden="true">2</span> The role is expanding while the specialty shrinks: industry surveys report 72% of designers say their role has broadened, and 56% of non-designers now do design tasks themselves. When everyone designs a little, pure production is worth less than ever &mdash; the leverage moved to whoever decides what good looks like. (Techmindz industry reporting; directional.)</p>
+                                      <p class="fn-src"><a href="#src-techmindz">Source: Techmindz &darr;</a></p>
+                  </div>
+                </div>
+              </aside>
+            </article>
+          </li>
+
+          <li class="tl-beat" id="y2030" data-beat>
+            <div class="tl-year" aria-hidden="true">2030</div>
+            <article class="tl-card reveal">
+              <h3 class="tl-headline"><span class="tl-headline-year">2030.</span> The Generative Turn: the static screen dies</h3>
+              <div class="tl-body" data-slot="body">
+                <p>Screens stop being drawn and start being generated &mdash; per user, per session, in real time. The fixed composition I spent twenty-five years perfecting is now an output parameter. You don&rsquo;t design the screen anymore. You design the system that designs the screen.<button class="fn-ref" type="button" aria-label="Dig deeper" id="fn-2030-ref" data-fn aria-expanded="false" aria-controls="fn-2030"><span aria-hidden="true">3</span></button></p>
+                <p>This is the year the World Economic Forum&rsquo;s math lands: roughly 92 million jobs displaced, 170 million created, a net gain of 78 million. A net gain &mdash; and graphic design still sits among the fastest- and largest-declining roles on the list, while UX and experience strategy climb the growth table. Churn pays out by role, not by average. The average is fine. Averages usually are.</p>
+                <p>Being on the wrong side of it isn&rsquo;t bad luck. It&rsquo;s a decision that was made back in 2026, one &ldquo;the tools will never&rdquo; at a time.</p>
+              </div>
+              <figure class="tl-stat" data-slot="stat">
+                <p class="tl-stat-value">+78<span class="tl-stat-unit">M</span></p>
+                <figcaption class="tl-stat-caption">net new jobs by 2030: ~92M displaced, ~170M created. The net is real. So are the 92 million. <span class="tl-stat-source">Source: WEF Future of Jobs Report 2025</span></figcaption>
+              </figure>
+              <aside class="fn collapse" id="fn-2030" aria-labelledby="fn-2030-ref">
+                <div class="collapse-inner">
+                  <div class="fn-content">
+                    <p><span class="fn-num" aria-hidden="true">3</span> What the Generative Turn does to a Tuesday: you write constraints, not comps. You maintain the design system, the guardrails, the taste rules &mdash; and agents assemble one-off interfaces inside them, per user, disposable by design. Your fingerprints on everything, your hands on nothing. (Churn figures: WEF Future of Jobs Report 2025. The Tuesday is my forecast.)</p>
+                                      <p class="fn-src"><a href="#src-wef">Source: WEF Future of Jobs Report 2025 &darr;</a></p>
+                  </div>
+                </div>
+              </aside>
+            </article>
+          </li>
+
+          <li class="tl-beat" id="y2032" data-beat>
+            <div class="tl-year" aria-hidden="true">2032</div>
+            <article class="tl-card reveal">
+              <h3 class="tl-headline"><span class="tl-headline-year">2032.</span> The Agent Layer: designing for non-humans</h3>
+              <div class="tl-body" data-slot="body">
+                <p>By 2032 a growing share of interfaces are never seen by a human at all. Your bank&rsquo;s agent negotiates with the airline&rsquo;s agent, which haggles with the hotel&rsquo;s agent, and at the end a person gets a one-line summary. A machine-to-machine economy &mdash; agents negotiating with agents. The designer&rsquo;s user is now, sometimes, software.</p>
+                <p>Designing for an agent isn&rsquo;t layout. It&rsquo;s intent, constraints, legibility, trust.<button class="fn-ref" type="button" aria-label="Dig deeper" id="fn-2032-ref" data-fn aria-expanded="false" aria-controls="fn-2032"><span aria-hidden="true">4</span></button> No color, no grid, no delight. Just: can another system understand what this does, what it costs, and whether to believe it. The skills transfer &mdash; hierarchy, clarity, honesty &mdash; but the canvas is gone.</p>
+                <p>This is also the year the career stops being one career. The work splits four ways: orchestration, taste, translation, or displacement. Everyone picks a lane this year &mdash; whether they mean to or not.</p>
+              </div>
+              <figure class="tl-stat tl-stat--quote" data-slot="stat">
+                <p class="tl-stat-value">&ldquo;Your user is no longer always human.&rdquo;</p>
+                <figcaption class="tl-stat-caption">The 2032 design brief in one line &mdash; not a statistic, a job description.</figcaption>
+              </figure>
+              <aside class="fn collapse" id="fn-2032" aria-labelledby="fn-2032-ref">
+                <div class="collapse-inner">
+                  <div class="fn-content">
+                    <p><span class="fn-num" aria-hidden="true">4</span> An interface a person uses is persuasion: hierarchy, affordance, feel. An interface an agent consumes is a contract: what can be done, under what constraints, with what guarantees &mdash; machine-legible, auditable, honest about cost and consequence. Trust stops being a feeling you evoke and becomes a property you can inspect. Get it wrong and the agent doesn&rsquo;t get confused. It just leaves. (Forecast, following the machine-to-machine trajectory in the Research Pack.)</p>
+                                      <p class="fn-src"><a href="#methodology">Author&rsquo;s forecast &mdash; methodology &darr;</a></p>
+                  </div>
+                </div>
+              </aside>
+            </article>
+          </li>
+
+          <li class="tl-beat" id="y2035" data-beat>
+            <div class="tl-year" aria-hidden="true">2035</div>
+            <article class="tl-card reveal">
+              <h3 class="tl-headline"><span class="tl-headline-year">2035.</span> The Invisible Interface</h3>
+              <div class="tl-body" data-slot="body">
+                <p>The screen recedes. Glasses, voice, spatial computing, ambient sensors, the first crude neural inputs &mdash; UX slides off the rectangle and into the room. The interface stops being a place you go and becomes a thing that happens around you.</p>
+                <p>Predictive systems act before you ask.<button class="fn-ref" type="button" aria-label="Dig deeper" id="fn-2035-ref" data-fn aria-expanded="false" aria-controls="fn-2035"><span aria-hidden="true">5</span></button> The craft I was raised on &mdash; arranging pixels inside a fixed frame &mdash; matters less every quarter. What matters is behavioral and systems design: what should happen, when, on whose authority, and what it costs when it&rsquo;s wrong. The design question is no longer &ldquo;is this screen clear.&rdquo; It&rsquo;s &ldquo;was this action welcome.&rdquo;</p>
+                <p>Ask a print designer what it feels like to watch the medium dissolve. I was one. It feels like this.</p>
+              </div>
+              <figure class="tl-stat tl-stat--arc" data-slot="stat">
+                <p class="tl-stat-value">static &rarr; responsive &rarr; adaptive &rarr; generative &rarr; ambient</p>
+                <figcaption class="tl-stat-caption">Five interface paradigms, each burying the last. <a href="#data">See the S-curves in the data section.</a></figcaption>
+              </figure>
+              <aside class="fn collapse" id="fn-2035" aria-labelledby="fn-2035-ref">
+                <div class="collapse-inner">
+                  <div class="fn-content">
+                    <p><span class="fn-num" aria-hidden="true">5</span> Why &ldquo;UI&rdquo; shrinks while &ldquo;UX&rdquo; grows: pixel arrangement is a production task, and production is what automates first. Behavior, consequence, and trust don&rsquo;t resize into a variant. When the interface is ambient and the system acts on its own, design stops being what it looks like and becomes what it&rsquo;s allowed to do. The rectangle was never the job. The judgment was. (Forecast; the paradigm arc is charted in the data section.)</p>
+                                      <p class="fn-src"><a href="#methodology">Author&rsquo;s forecast &mdash; methodology &darr;</a></p>
+                  </div>
+                </div>
+              </aside>
+            </article>
+          </li>
+
+          <li class="tl-beat" id="y2040" data-beat>
+            <div class="tl-year" aria-hidden="true">2040</div>
+            <article class="tl-card reveal">
+              <h3 class="tl-headline"><span class="tl-headline-year">2040.</span> Two industries</h3>
+              <div class="tl-body" data-slot="body">
+                <p>The split finished. There are two design industries now, and they don&rsquo;t share a labor market. The small one directs &mdash; taste, systems, fleets of agents. Scarce people, absurdly paid. The large one competes with a prompt box on price, and the prompt box doesn&rsquo;t sleep.</p>
+                <p>The AI-fluency wage premium &mdash; already around +56% back when I started writing this &mdash; hardened into a class line.<button class="fn-ref" type="button" aria-label="Dig deeper" id="fn-2040-ref" data-fn aria-expanded="false" aria-controls="fn-2040"><span aria-hidden="true">6</span></button> Not a skills gap. A class line. And which side of it you&rsquo;re on was mostly settled years earlier, in the boring months when learning to direct the machine still felt optional.</p>
+                <p>If you&rsquo;re reading this from 2026, the door is still open. That is the whole of the good news.</p>
+              </div>
+              <figure class="tl-stat" data-slot="stat">
+                <p class="tl-stat-value">+56<span class="tl-stat-unit">%</span></p>
+                <figcaption class="tl-stat-caption">the pay premium for AI-fluent designers over their peers &mdash; by 2040, the class line. <span class="tl-stat-source">Source: 2025 wage reporting (<a href="#sources">see Sources</a>)</span></figcaption>
+              </figure>
+              <aside class="fn collapse" id="fn-2040" aria-labelledby="fn-2040-ref">
+                <div class="collapse-inner">
+                  <div class="fn-content">
+                    <p><span class="fn-num" aria-hidden="true">6</span> You, reading in 2026: which tier are you building toward &mdash; starting now, with the next hour you control? The orchestrators and taste-makers of 2040 started as people who spent 2026 learning to direct the machine instead of racing it. The displaced started as people who waited for certainty. Certainty came. It just arrived too late to act on. (The +56% premium is 2025 reporting; the class line is my forecast.)</p>
+                                      <p class="fn-src"><a href="#methodology">Premium: 2025 reporting &mdash; methodology &darr;</a></p>
+                  </div>
+                </div>
+              </aside>
+              <p class="tl-handoff"><a href="#fork">So here&rsquo;s your fork &mdash;</a></p>
+            </article>
+          </li>
+
+        </ol>
+      </div>
+    </section>
+
+    <section id="fork" class="section section--fork" tabindex="-1" aria-labelledby="fork-title" data-theme="dark">
+      <div class="wrap wrap--wide">
+
+        <header class="fork-head reveal">
+          <p class="eyebrow">The fork &middot; 2032</p>
+          <h2 class="fork-title" id="fork-title">Choose your 2040</h2>
+          <p class="fork-lede">In 2032 the career splits. I&rsquo;ve watched this before &mdash; typesetters, Flash developers, print production artists. The fork always looks optional until it isn&rsquo;t. Every designer becomes one of four people. You pick. Then you live with it.</p>
+        </header>
+
+        <p class="visually-hidden" role="status" id="fork-status"></p>
+
+        <div class="fork-paths reveal" id="fork-paths">
+          <button class="path-card" type="button" id="path-orchestrator" data-path="orchestrator" aria-pressed="false" aria-controls="outcome-orchestrator">
+            <span class="path-index" aria-hidden="true">01</span>
+            <span class="path-name">The Orchestrator</span>
+            <span class="path-hook">You stopped making screens and started directing fleets of agents.</span>
+            <span class="path-cta" aria-hidden="true">Choose &rarr;</span>
+          </button>
+          <button class="path-card" type="button" id="path-tastemaker" data-path="tastemaker" aria-pressed="false" aria-controls="outcome-tastemaker">
+            <span class="path-index" aria-hidden="true">02</span>
+            <span class="path-name">The Taste&#8209;Maker</span>
+            <span class="path-hook">You went deep on the judgment AI can&rsquo;t originate.</span>
+            <span class="path-cta" aria-hidden="true">Choose &rarr;</span>
+          </button>
+          <button class="path-card" type="button" id="path-translator" data-path="translator" aria-pressed="false" aria-controls="outcome-translator">
+            <span class="path-index" aria-hidden="true">03</span>
+            <span class="path-name">The Translator</span>
+            <span class="path-hook">You took the seam between humans, AI, and the business.</span>
+            <span class="path-cta" aria-hidden="true">Choose &rarr;</span>
+          </button>
+          <button class="path-card" type="button" id="path-displaced" data-path="displaced" aria-pressed="false" aria-controls="outcome-displaced">
+            <span class="path-index" aria-hidden="true">04</span>
+            <span class="path-name">The Displaced</span>
+            <span class="path-hook">You defended the production layer.</span>
+            <span class="path-cta" aria-hidden="true">Choose &rarr;</span>
+          </button>
+        </div>
+
+        <div class="fork-outcomes">
+
+          <div class="fork-outcome collapse" id="outcome-orchestrator" role="region" aria-labelledby="path-orchestrator">
+            <div class="collapse-inner">
+              <div class="outcome-body">
+                <p class="outcome-kicker">2040 &middot; The Orchestrator</p>
+                <div class="outcome-block">
+                  <h3 class="outcome-label">What you became</h3>
+                  <p>A director of systems that design. You write intent, constraints, and taste rules; fleets of agents execute. You don&rsquo;t make the artifact anymore. Some mornings you still miss the pixels. Most mornings you don&rsquo;t have time to.</p>
+                </div>
+                <div class="outcome-block">
+                  <h3 class="outcome-label">Your 2040</h3>
+                  <p>Scarce and expensive. You run what a 2026 org chart would have called a department &mdash; one person, orchestrating. The filter you passed was already visible back then: half of design leaders were weighting AI fluency first in hiring, ahead of any tool skill. You cleared it early, and the compounding did the rest. You ship more in a quarter than your old team shipped in two years.</p>
+                </div>
+                <div class="outcome-block">
+                  <h3 class="outcome-label">What it took</h3>
+                  <p>Taste, systems thinking, AI fluency &mdash; and the real price: you had to stop identifying as the person who makes the thing. That identity was twenty years deep. Cutting it out felt like surgery. It was. It worked.</p>
+                </div>
+                <button class="fork-back" type="button" data-fork-back>&larr; Choose a different path</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="fork-outcome collapse" id="outcome-tastemaker" role="region" aria-labelledby="path-tastemaker">
+            <div class="collapse-inner">
+              <div class="outcome-body">
+                <p class="outcome-kicker">2040 &middot; The Taste&#8209;Maker</p>
+                <div class="outcome-block">
+                  <h3 class="outcome-label">What you became</h3>
+                  <p>The person who knows what good is and can say why. Brand soul, editorial judgment, the call that something is technically perfect and still wrong. The machines are brilliant at <em>could</em>. You own <em>should</em>.</p>
+                </div>
+                <div class="outcome-block">
+                  <h3 class="outcome-label">Your 2040</h3>
+                  <p>A premium, narrower lane. Fewer seats than the orchestrators, higher variance, better parties. Everything can be generated now, which means someone has to choose &mdash; and a signed choice is expensive. &ldquo;Taste is the new bottleneck&rdquo; stopped being a conference line and became your invoice.</p>
+                </div>
+                <div class="outcome-block">
+                  <h3 class="outcome-label">What it took</h3>
+                  <p>The ten thousand reps of craft history the machine trained on &mdash; plus the nerve to bill for judgment instead of hours. And discipline. Your taste stays sharp only because you never stopped studying the things the models can&rsquo;t see: context, culture, consequence.</p>
+                </div>
+                <button class="fork-back" type="button" data-fork-back>&larr; Choose a different path</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="fork-outcome collapse" id="outcome-translator" role="region" aria-labelledby="path-translator">
+            <div class="collapse-inner">
+              <div class="outcome-body">
+                <p class="outcome-kicker">2040 &middot; The Translator</p>
+                <div class="outcome-block">
+                  <h3 class="outcome-label">What you became</h3>
+                  <p>The seam. You turn vague business asks into sharp problems, translate human mess into machine constraints, and say &ldquo;no, we&rsquo;re not building that&rdquo; with receipts. Problem definition, research, ethics &mdash; the part of design that was never about drawing.</p>
+                </div>
+                <div class="outcome-block">
+                  <h3 class="outcome-label">Your 2040</h3>
+                  <p>Indispensable and mostly invisible. Every agentic system needs a human accountable for what it <em>should</em> do &mdash; someone who heard what the stakeholder meant, not what they said. Un-automatable glue. You&rsquo;re never the headline. You&rsquo;re why the headline shipped.</p>
+                </div>
+                <div class="outcome-block">
+                  <h3 class="outcome-label">What it took</h3>
+                  <p>Letting go of the artifact entirely &mdash; earlier and more completely than the orchestrators did &mdash; and getting fluent in three languages at once: human, machine, and P&amp;L. Your portfolio stopped being screens years ago. It&rsquo;s outcomes now.</p>
+                </div>
+                <button class="fork-back" type="button" data-fork-back>&larr; Choose a different path</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="fork-outcome collapse" id="outcome-displaced" role="region" aria-labelledby="path-displaced">
+            <div class="collapse-inner">
+              <div class="outcome-body">
+                <p class="outcome-kicker">2040 &middot; The Displaced</p>
+                <div class="outcome-block">
+                  <h3 class="outcome-label">What you became</h3>
+                  <p>The last person who makes screens by hand. You defended the production layer &mdash; the craft, the pixels, the thing you were best at. It was a reasonable thing to love. It was not a reasonable thing to bet on.</p>
+                </div>
+                <div class="outcome-block">
+                  <h3 class="outcome-label">Your 2040</h3>
+                  <p>Commoditized. You compete with a prompt box that works for electricity, and the clients who stayed loyal are retiring faster than they&rsquo;re being replaced. The work still exists &mdash; legacy systems need hands, a shrinking market still wants them &mdash; but it&rsquo;s priced like production, because that&rsquo;s what it is. Forty percent of the job was automatable back in 2026. You watched the number climb and called it hype.</p>
+                </div>
+                <div class="outcome-block">
+                  <h3 class="outcome-label">What it took</h3>
+                  <p>Nothing. That&rsquo;s the trap &mdash; this path required no change at all. The off-ramps stayed open for years: the fluency was learnable, the pivot was fundable, half the industry made it across. This future isn&rsquo;t a punishment. It&rsquo;s a default. The only thing it asked of you was to wait.</p>
+                </div>
+                <button class="fork-back" type="button" data-fork-back>&larr; Choose a different path</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="data" class="section section--data" tabindex="-1" aria-labelledby="data-title">
+      <div class="wrap wrap--wide">
+
+        <header class="data-head reveal">
+          <p class="eyebrow">The data</p>
+          <h2 class="data-title" id="data-title">The numbers behind it</h2>
+          <p class="data-lede">Cited where cited. Labeled where projected. No chart here pretends to know more than its source does.</p>
+        </header>
+
+        <!-- 1 · Diverging bar — WEF roles -->
+        <figure class="viz reveal" id="viz-roles">
+          <h3 class="viz-title">Shrinking vs. growing</h3>
+          <p class="viz-sub">Which design roles decline and which grow, 2025&ndash;2030: production craft down, experience strategy up.</p>
+          <div class="viz-canvas viz-canvas--roles">
+            <canvas id="chart-roles" role="img" aria-label="Diverging bar chart. Graphic design: declining — ranked number 11 fastest-declining and number 13 largest-declining job worldwide. UI and UX design: growing — among the top ten fastest-growing roles."></canvas>
+          </div>
+          <p class="viz-note">The WEF publishes ranks, not rates &mdash; bar direction is the data; bar length encodes nothing.</p>
+          <p class="viz-source">Source: WEF Future of Jobs Report 2025</p>
+          <details class="viz-table">
+            <summary>Data table</summary>
+            <table>
+              <caption class="visually-hidden">Design roles by direction, WEF Future of Jobs 2025</caption>
+              <thead><tr><th scope="col">Role</th><th scope="col">Direction</th><th scope="col">WEF position</th></tr></thead>
+              <tbody>
+                <tr><td>Graphic design</td><td>Declining</td><td class="num">#11 fastest-declining &middot; #13 largest-declining</td></tr>
+                <tr><td>UI/UX design</td><td>Growing</td><td class="num">Top-10 fastest-growing</td></tr>
+              </tbody>
+            </table>
+          </details>
+        </figure>
+
+        <!-- 2 · Task-automation curves -->
+        <figure class="viz reveal" id="viz-automation">
+          <h3 class="viz-title">How much of the job a machine can do</h3>
+          <p class="viz-sub">Share of design work that&rsquo;s automatable, by task type, 2026&ndash;2040. Production rises fastest; judgment holds out longest.</p>
+          <div class="viz-canvas viz-canvas--automation">
+            <canvas id="chart-automation" role="img" aria-label="Line chart, 2026 to 2040. Production and pixel tasks: 40 percent automatable in 2026 rising to 98 percent by 2040. Research and synthesis: 15 rising to 72 percent. Strategy, taste and ethics: 5 rising to 30 percent. The 2026 production figure is cited; all later points are directional projections."></canvas>
+          </div>
+          <p class="viz-note">The 2026 production figure (~40% of entry-level UI tasks) is the cited anchor &mdash; the solid dot. Every later point is directional projection, not measurement. Dashed on purpose.</p>
+          <p class="viz-source">Anchor: DigitalDefynd &middot; Projection: author</p>
+          <details class="viz-table">
+            <summary>Data table</summary>
+            <table>
+              <caption class="visually-hidden">Percent of design work automatable by task type and year</caption>
+              <thead><tr><th scope="col">Year</th><th scope="col">Production / pixel</th><th scope="col">Research / synthesis</th><th scope="col">Strategy / taste / ethics</th></tr></thead>
+              <tbody>
+                <tr><td>2026</td><td class="num">40%</td><td class="num">15%</td><td class="num">5%</td></tr>
+                <tr><td>2028</td><td class="num">65%</td><td class="num">25%</td><td class="num">8%</td></tr>
+                <tr><td>2030</td><td class="num">85%</td><td class="num">40%</td><td class="num">12%</td></tr>
+                <tr><td>2032</td><td class="num">92%</td><td class="num">55%</td><td class="num">18%</td></tr>
+                <tr><td>2035</td><td class="num">96%</td><td class="num">65%</td><td class="num">24%</td></tr>
+                <tr><td>2040</td><td class="num">98%</td><td class="num">72%</td><td class="num">30%</td></tr>
+              </tbody>
+            </table>
+          </details>
+        </figure>
+
+        <!-- 3 · Skills shift — stacked composition -->
+        <figure class="viz reveal" id="viz-skills">
+          <h3 class="viz-title">The designer&rsquo;s job, 2026 vs. 2040</h3>
+          <p class="viz-sub">What a working week is made of, before and after the shift.</p>
+          <div class="viz-canvas viz-canvas--skills">
+            <canvas id="chart-skills" role="img" aria-label="Two stacked bars comparing job composition. 2026: production 55 percent, research 20, strategy and taste 15, orchestration 10. 2040: production 10 percent, research 20, strategy and taste 35, orchestration 35."></canvas>
+          </div>
+          <p class="viz-note">Illustrative composition, not survey data.</p>
+          <p class="viz-source">Author&rsquo;s projection</p>
+          <details class="viz-table">
+            <summary>Data table</summary>
+            <table>
+              <caption class="visually-hidden">Composition of a designer's work, 2026 versus 2040</caption>
+              <thead><tr><th scope="col">Share of the week</th><th scope="col">2026</th><th scope="col">2040</th></tr></thead>
+              <tbody>
+                <tr><td>Production</td><td class="num">55%</td><td class="num">10%</td></tr>
+                <tr><td>Research</td><td class="num">20%</td><td class="num">20%</td></tr>
+                <tr><td>Strategy / taste</td><td class="num">15%</td><td class="num">35%</td></tr>
+                <tr><td>Orchestration</td><td class="num">10%</td><td class="num">35%</td></tr>
+              </tbody>
+            </table>
+          </details>
+        </figure>
+
+        <!-- 4 · Interface-evolution S-curves (hand-rolled SVG) -->
+        <figure class="viz viz--curves reveal" id="viz-curves">
+          <h3 class="viz-title">Five interfaces, five funerals</h3>
+          <p class="viz-sub">Adoption of each interface paradigm, 2000&rarr;2040. Every curve peaks later than the one it buried.</p>
+          <div class="viz-svg">
+            <svg viewBox="0 0 720 320" role="img" aria-labelledby="curves-title curves-desc" xmlns="http://www.w3.org/2000/svg">
+              <title id="curves-title">Interface paradigm adoption curves, 2000 to 2040</title>
+              <desc id="curves-desc">Five overlapping adoption arcs. Static interfaces dominate around 2000 and fade by the late 2010s. Responsive peaks in the mid-2010s. Adaptive peaks in the mid-2020s. Generative rises from the mid-2020s and peaks in the early 2030s. Ambient and spatial interfaces begin rising in the 2030s and are still climbing in 2040.</desc>
+              <!-- baseline + year ticks -->
+              <line class="curve-axis" x1="50" y1="270" x2="690" y2="270"></line>
+              <g class="curve-ticks" aria-hidden="true">
+                <text x="50" y="292">2000</text>
+                <text x="210" y="292">2010</text>
+                <text x="370" y="292">2020</text>
+                <text x="530" y="292">2030</text>
+                <text x="690" y="292" text-anchor="end">2040</text>
+              </g>
+              <!-- adoption arcs, oldest → newest -->
+              <path class="curve curve-1" pathLength="1" d="M50,74 C130,72 180,92 232,166 C270,220 320,256 380,265 L690,269" fill="none"></path>
+              <path class="curve curve-2" pathLength="1" d="M146,268 C210,262 232,150 306,116 C348,98 382,108 424,152 C464,196 520,240 600,258 L690,263" fill="none"></path>
+              <path class="curve curve-3" pathLength="1" d="M310,268 C360,262 388,196 438,168 C470,150 500,154 534,182 C570,214 620,244 690,254" fill="none"></path>
+              <path class="curve curve-4" pathLength="1" d="M414,268 C460,260 476,150 524,110 C550,88 576,86 606,100 C640,116 668,126 690,130" fill="none"></path>
+              <path class="curve curve-5" pathLength="1" d="M562,268 C606,262 626,190 654,140 C668,114 678,96 690,84" fill="none"></path>
+              <!-- direct labels (text tokens, never series color) -->
+              <g class="curve-labels" aria-hidden="true">
+                <text x="66" y="58">Static</text>
+                <text x="286" y="94">Responsive</text>
+                <text x="424" y="140">Adaptive</text>
+                <text x="536" y="72">Generative</text>
+                <text x="688" y="56" text-anchor="end">Ambient / Spatial</text>
+              </g>
+            </svg>
+          </div>
+          <p class="viz-note">Illustrative arcs &mdash; the pattern is the point, not the y-axis.</p>
+          <p class="viz-source">Author&rsquo;s projection, per the Research Pack arc</p>
+          <details class="viz-table">
+            <summary>Data table</summary>
+            <table>
+              <caption class="visually-hidden">Interface paradigms and their dominant eras</caption>
+              <thead><tr><th scope="col">Paradigm</th><th scope="col">Rises</th><th scope="col">Peaks</th><th scope="col">By 2040</th></tr></thead>
+              <tbody>
+                <tr><td>Static (print logic)</td><td class="num">pre-2000</td><td class="num">~2000s</td><td>Gone</td></tr>
+                <tr><td>Responsive</td><td class="num">~2010</td><td class="num">mid-2010s</td><td>Legacy</td></tr>
+                <tr><td>Adaptive</td><td class="num">~2018</td><td class="num">mid-2020s</td><td>Fading</td></tr>
+                <tr><td>Generative</td><td class="num">~2025</td><td class="num">early 2030s</td><td>Mainstream</td></tr>
+                <tr><td>Ambient / spatial</td><td class="num">~2032</td><td class="num">still rising</td><td>The frontier</td></tr>
+              </tbody>
+            </table>
+          </details>
+        </figure>
+
+        <!-- 5 · Churn flow — counters -->
+        <figure class="viz viz--churn reveal" id="viz-churn">
+          <h3 class="viz-title">The churn, by 2030</h3>
+          <p class="viz-sub">Churn, not apocalypse &mdash; the danger is being on the wrong side of it.</p>
+          <div class="churn" id="churn">
+            <div class="churn-item">
+              <p class="churn-value churn-value--out"><span class="churn-sign">&minus;</span><span data-count-to="92">92</span><span class="churn-unit">M</span></p>
+              <p class="churn-label">jobs displaced</p>
+            </div>
+            <div class="churn-item">
+              <p class="churn-value churn-value--in"><span class="churn-sign">+</span><span data-count-to="170">170</span><span class="churn-unit">M</span></p>
+              <p class="churn-label">jobs created</p>
+            </div>
+            <div class="churn-item">
+              <p class="churn-value"><span class="churn-sign">+</span><span data-count-to="78">78</span><span class="churn-unit">M</span></p>
+              <p class="churn-label">net &mdash; and no comfort to the 92M</p>
+            </div>
+          </div>
+          <p class="viz-source">Source: WEF Future of Jobs Report 2025</p>
+        </figure>
+
+      </div>
+
+      <!-- 6 · Wage premium — the dividing line -->
+      <aside class="stat-slab reveal" data-theme="dark" aria-label="The AI-fluency wage premium">
+        <p class="stat-slab-kicker">The dividing line</p>
+        <p class="stat-slab-value">+56%</p>
+        <p class="stat-slab-line">The pay gap between designers who are AI-fluent and those who aren&rsquo;t. Not a perk. The line the field splits along.</p>
+        <p class="stat-slab-source">AI-skills wage premium &middot; 2025 reporting (<a href="#sources">see Sources</a>)</p>
+      </aside>
+    </section>
+
+    <section id="humans" class="section section--humans" tabindex="-1" aria-labelledby="humans-title">
+      <div class="wrap wrap--wide">
+
+        <header class="humans-head reveal">
+          <p class="eyebrow">Where humans must excel</p>
+          <h2 class="humans-title" id="humans-title">Where a person still wins</h2>
+          <p class="humans-lede">AI is brilliant at <em>could</em>. It is hopeless at <em>should</em>. Everything that survives lives in that gap.</p>
+        </header>
+
+        <ol class="skills">
+          <li class="skill reveal">
+            <div class="skill-head">
+              <span class="skill-index" aria-hidden="true">01</span>
+              <h3 class="skill-name">Taste</h3>
+            </div>
+            <div class="skill-body">
+              <p class="skill-def">Knowing what&rsquo;s good, and being able to say why. The new bottleneck.</p>
+              <p class="skill-why"><span class="skill-why-label">Why AI can&rsquo;t take it</span>Models average the past. Taste bets against the average &mdash; it&rsquo;s a position, and a model doesn&rsquo;t hold positions.</p>
+            </div>
+          </li>
+          <li class="skill reveal">
+            <div class="skill-head">
+              <span class="skill-index" aria-hidden="true">02</span>
+              <h3 class="skill-name">Judgment &amp; intent</h3>
+            </div>
+            <div class="skill-body">
+              <p class="skill-def">Deciding what to build &mdash; and what to kill.</p>
+              <p class="skill-why"><span class="skill-why-label">Why AI can&rsquo;t take it</span>AI generates options. It cannot want one. Intent is the part that signs its name.</p>
+            </div>
+          </li>
+          <li class="skill reveal">
+            <div class="skill-head">
+              <span class="skill-index" aria-hidden="true">03</span>
+              <h3 class="skill-name">Problem definition</h3>
+            </div>
+            <div class="skill-body">
+              <p class="skill-def">Turning a vague business ask into a sharp design problem.</p>
+              <p class="skill-why"><span class="skill-why-label">Why AI can&rsquo;t take it</span>A model answers the question as asked. The job is noticing it&rsquo;s the wrong question.</p>
+            </div>
+          </li>
+          <li class="skill reveal">
+            <div class="skill-head">
+              <span class="skill-index" aria-hidden="true">04</span>
+              <h3 class="skill-name">Feedback alchemy</h3>
+            </div>
+            <div class="skill-body">
+              <p class="skill-def">Hearing what stakeholders mean, not what they say.</p>
+              <p class="skill-why"><span class="skill-why-label">Why AI can&rsquo;t take it</span>&ldquo;Make the logo bigger&rdquo; is never about the logo. Subtext isn&rsquo;t in the transcript, and the transcript is all a model gets.</p>
+            </div>
+          </li>
+          <li class="skill reveal">
+            <div class="skill-head">
+              <span class="skill-index" aria-hidden="true">05</span>
+              <h3 class="skill-name">Empathy &amp; cultural intelligence</h3>
+            </div>
+            <div class="skill-body">
+              <p class="skill-def">Designing for humans as they actually are &mdash; not as the dataset says they were.</p>
+              <p class="skill-why"><span class="skill-why-label">Why AI can&rsquo;t take it</span>Training data is the past on its best behavior. People are the present on their worst.</p>
+            </div>
+          </li>
+          <li class="skill reveal">
+            <div class="skill-head">
+              <span class="skill-index" aria-hidden="true">06</span>
+              <h3 class="skill-name">Ethics</h3>
+            </div>
+            <div class="skill-body">
+              <p class="skill-def">Refusing the dark pattern. Owning the consequence.</p>
+              <p class="skill-why"><span class="skill-why-label">Why AI can&rsquo;t take it</span>A model will build anything it&rsquo;s asked to. Refusal requires something to lose.</p>
+            </div>
+          </li>
+          <li class="skill reveal">
+            <div class="skill-head">
+              <span class="skill-index" aria-hidden="true">07</span>
+              <h3 class="skill-name">Systems thinking</h3>
+            </div>
+            <div class="skill-body">
+              <p class="skill-def">Holding the whole &mdash; flows, incentives, failure states &mdash; not the screen.</p>
+              <p class="skill-why"><span class="skill-why-label">Why AI can&rsquo;t take it</span>Agents optimize the part they can see. Someone has to answer for the part they can&rsquo;t.</p>
+            </div>
+          </li>
+          <li class="skill reveal">
+            <div class="skill-head">
+              <span class="skill-index" aria-hidden="true">08</span>
+              <h3 class="skill-name">Orchestration &amp; AI fluency</h3>
+            </div>
+            <div class="skill-body">
+              <p class="skill-def">Directing many agents toward one coherent outcome.</p>
+              <p class="skill-why"><span class="skill-why-label">Why AI can&rsquo;t take it</span>Someone sets the intent the fleet executes. And the market already prices it: 50% of design leaders now weight AI fluency first in hiring &mdash; ahead of any tool skill. <span class="skill-cite">(Designer Fund, AI in Design 2026)</span></p>
+            </div>
+          </li>
+        </ol>
+
+        <div class="humans-cta reveal">
+          <p class="humans-cta-lead">If you&rsquo;re a designer reading this in 2026: move up the stack. Not someday. Now, <span class="hl">while it&rsquo;s still a choice.</span></p>
+          <p class="humans-cta-text">Learn to direct the machine &mdash; get fluent, then get opinionated. Charge for judgment, not hours. Practice the eight things above until at least two of them are yours. None of this is meant to inspire you. The alternative is the prompt box, and the prompt box doesn&rsquo;t negotiate.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="about" class="section section--about" tabindex="-1" aria-labelledby="about-title">
+      <div class="wrap">
+
+        <header class="about-head reveal">
+          <p class="eyebrow">About &middot; sources</p>
+          <h2 class="about-title" id="about-title">Written from 2026</h2>
+        </header>
+
+        <div class="coda reveal">
+          <p>I&rsquo;ve watched three platforms die. Print went first &mdash; a decade of typographic instinct reclassified as &ldquo;legacy skills&rdquo; in about five years. Then fixed layouts. Then Flash, which took whole studios down with it. Every time, the people who made it through weren&rsquo;t the most talented. They were the ones who moved before they had to.</p>
+          <p>This one is bigger. It doesn&rsquo;t come for one medium. It comes for the making itself.</p>
+          <p>If I could send one line back to my younger self &mdash; the one rebuilding his portfolio the year print died &mdash; it would be this: <span class="hl">the tool was never the job. The judgment was.</span> Bet on that, every time the ground moves.</p>
+          <p class="coda-byline">&mdash; Robert Fauver, 2026. Twenty-five years in design, fifteen in software. Still here.</p>
+        </div>
+
+        <div class="apparatus reveal" id="methodology" tabindex="-1">
+          <h3 class="apparatus-title">About this forecast</h3>
+          <p>This is a forecast, not a measurement. The deal I&rsquo;ve made with you: every number on this site is either a cited figure from published 2025&ndash;2026 reporting, or a directional projection labeled as one &mdash; dashed lines, &ldquo;illustrative&rdquo; captions, &ldquo;author&rsquo;s projection&rdquo; source notes.</p>
+          <p>Some cited percentages come from vendor and industry reports &mdash; Figma&rsquo;s designer survey, DigitalDefynd&rsquo;s task analysis, Techmindz&rsquo;s role data, the ~56% AI-skills wage premium from 2025 industry wage reporting &mdash; not peer-reviewed research. They are directional, and I say so where they appear. I use them because they match what I can see from inside the industry, not because they&rsquo;re precise. The WEF jobs data is the sturdiest thing here; the 2040 curves are the most speculative; the years between are my read of the trajectory.</p>
+          <p>If a number and its label ever disagree on this page, trust the label.</p>
+        </div>
+
+        <div class="apparatus reveal" id="sources" tabindex="-1">
+          <h3 class="apparatus-title">Sources</h3>
+          <ol class="src-list">
+            <li class="src" id="src-wef">
+              <a class="src-link" href="https://www.weforum.org/publications/the-future-of-jobs-report-2025/" target="_blank" rel="noopener noreferrer">World Economic Forum &mdash; Future of Jobs Report 2025</a>
+              <span class="src-what">The churn: ~92M displaced &middot; ~170M created &middot; +78M net; declining &amp; growing role lists</span>
+              <span class="src-cited">Cited at <a href="#fn-2030-ref">2030</a></span>
+            </li>
+            <li class="src" id="src-wef-press">
+              <a class="src-link" href="https://www.weforum.org/press/2025/01/future-of-jobs-report-2025-78-million-new-job-opportunities-by-2030-but-urgent-upskilling-needed-to-prepare-workforces/" target="_blank" rel="noopener noreferrer">WEF press release &mdash; 78 million new job opportunities by 2030</a>
+              <span class="src-what">The net figure, plus the &ldquo;urgent upskilling&rdquo; framing</span>
+            </li>
+            <li class="src" id="src-beda">
+              <a class="src-link" href="https://beda.org/news/take-aways-for-design-from-the-wef-future-of-jobs-2025-report/" target="_blank" rel="noopener noreferrer">BEDA &mdash; Take-aways for design from the WEF Future of Jobs 2025</a>
+              <span class="src-what">Graphic design: #11 fastest-declining, #13 largest-declining</span>
+            </li>
+            <li class="src" id="src-digitaldefynd">
+              <a class="src-link" href="https://digitaldefynd.com/IQ/will-ux-ui-jobs-be-automated/" target="_blank" rel="noopener noreferrer">DigitalDefynd &mdash; Will UX/UI jobs be automated?</a>
+              <span class="src-what">~40% of entry-level UI tasks automatable (directional)</span>
+              <span class="src-cited">Cited at <a href="#fn-2026-ref">2026</a></span>
+            </li>
+            <li class="src" id="src-techmindz">
+              <a class="src-link" href="https://www.techmindz.com/how-will-ai-impact-ui-ux-professions-in-2025-beyond/" target="_blank" rel="noopener noreferrer">Techmindz &mdash; How will AI impact UI/UX professions in 2025 &amp; beyond?</a>
+              <span class="src-what">72% say roles broadened; 56% of non-designers now do design tasks (directional)</span>
+              <span class="src-cited">Cited at <a href="#fn-2028-ref">2028</a></span>
+            </li>
+            <li class="src" id="src-designerfund">
+              <a class="src-link" href="https://designerfund.com/blog/ai-in-design-2026" target="_blank" rel="noopener noreferrer">Designer Fund &mdash; AI in Design 2026</a>
+              <span class="src-what">50% of design leaders weight AI fluency first in hiring; systems thinking &amp; strategy follow</span>
+              <span class="src-cited">Cited in <a href="#humans">Humans</a> and <a href="#fork">the Fork</a></span>
+            </li>
+            <li class="src" id="src-designative">
+              <a class="src-link" href="https://www.designative.info/2026/02/01/taste-is-the-new-bottleneck-design-strategy-and-judgment-in-the-age-of-agents-and-vibe-coding/" target="_blank" rel="noopener noreferrer">Designative &mdash; Taste is the new bottleneck</a>
+              <span class="src-what">Judgment and strategy in the age of agents; the phrase this site leans on</span>
+            </li>
+            <li class="src" id="src-stanvision">
+              <a class="src-link" href="https://www.stan.vision/journal/ux-ui-trends-shaping-digital-products" target="_blank" rel="noopener noreferrer">Stan Vision &mdash; UX/UI trends shaping digital products</a>
+              <span class="src-what">Gartner: adaptive interfaces from &lt;5% to 30% of new apps by 2026; ~40% personalization revenue lift</span>
+            </li>
+            <li class="src" id="src-figma">
+              <a class="src-link" href="https://www.figma.com/ai/" target="_blank" rel="noopener noreferrer">Figma &mdash; Figma AI &amp; State of the Designer 2026</a>
+              <span class="src-what">89% of designers using more AI: faster; 91%: higher quality (vendor survey, directional)</span>
+            </li>
+            <li class="src" id="src-fastcompany">
+              <a class="src-link" href="https://www.fastcompany.com/91545179/figma-ai-agent-tool" target="_blank" rel="noopener noreferrer">Fast Company &mdash; Figma launches an agentic tool for design tasks</a>
+              <span class="src-what">The production layer&rsquo;s collapse, reported in real time</span>
+            </li>
+            <li class="src" id="src-ai2040">
+              <a class="src-link" href="https://ai-2040.com/" target="_blank" rel="noopener noreferrer">AI 2040: Plan A</a>
+              <span class="src-what">Structural reference &mdash; the scrollytelling form this site borrows</span>
+            </li>
+          </ol>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap wrap--wide">
+      <p class="foot-title">UX&nbsp;2040 <span class="foot-tagline">&mdash; Designed by machines. Directed by the few who saw it coming.</span></p>
+      <p class="foot-meta">By Robert Fauver &middot; written from 2026</p>
+      <p class="foot-proof">This site was designed and built by directing AI. That isn&rsquo;t a disclosure. It&rsquo;s the argument, demonstrated.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

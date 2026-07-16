@@ -1,0 +1,1840 @@
+/* ==========================================================================
+   UX 2040 — styles
+   Visual foundation: the FAUVERISM design system (robertfauver.com).
+   Warm editorial paper, warm ink, Fauvist accents as punctuation,
+   modernist rules and hard offset shadows. Tokens vendored from
+   the Claude Design project (tokens/colors|typography|spacing).
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Fauverism tokens — color
+   -------------------------------------------------------------------------- */
+
+:root {
+  /* Paper & ink (warm neutral spine) */
+  --paper:         #f5efe1;
+  --paper-deep:    #ece4d2;
+  --card:          #fbf7ec;
+  --card-bright:   #ffffff;
+  --ink:           #1d1a16;
+  --ink-soft:      #4a443b;
+  --ink-mute:      #7a7264;
+  --ink-faint:     #a9a08e;
+
+  /* Fauvist accents — graphic punctuation, never gradients */
+  --vermillion:      #e6452f;   /* PRIMARY accent */
+  --vermillion-deep: #c5311d;
+  --cobalt:          #1e54c4;   /* links, focus */
+  --cobalt-deep:     #163f97;
+  --marigold:        #f2b01e;   /* highlight */
+  --marigold-deep:   #cf9100;
+  --viridian:        #1f8a6d;
+  --viridian-deep:   #15634e;
+  --plum:            #8e3b8c;
+
+  /* Tints (accents washed into the paper) */
+  --vermillion-wash: #fbe3dd;
+  --cobalt-wash:     #dee6f9;
+  --marigold-wash:   #fbeec8;
+  --viridian-wash:   #d8ece4;
+
+  /* Lines */
+  --rule-hair: rgb(29 26 22 / 0.14);
+  --rule-soft: rgb(29 26 22 / 0.28);
+  --rule-bold: var(--ink);
+
+  /* Shadow */
+  --shadow-block:       4px 4px 0 var(--ink);
+  --shadow-block-color: 4px 4px 0 var(--vermillion);
+  --shadow-soft: 0 1px 2px rgb(29 26 22 / 0.06), 0 6px 18px rgb(29 26 22 / 0.07);
+
+  /* Semantic aliases */
+  --bg-page:       var(--paper);
+  --bg-sunken:     var(--paper-deep);
+  --surface-card:  var(--card);
+  --text-heading:  var(--ink);
+  --text-body:     var(--ink-soft);
+  /* ink-mute (#7a7264) measures 4.15:1 on paper — shy of AA 4.5 for the
+     small text this token carries. Snapped one step darker on light only;
+     the dark scope keeps the system's own value (6.9:1 there). */
+  --text-muted:    #6d655a;
+  --text-faint:    var(--ink-faint);
+  --accent:        var(--vermillion);
+  --accent-deep:   var(--vermillion-deep);
+  --link:          var(--cobalt);
+  --link-deep:     var(--cobalt-deep);
+  --border:        var(--rule-hair);
+  --border-strong: var(--rule-bold);
+  --selection-bg:  var(--marigold);
+  --selection-fg:  var(--ink);
+
+  /* Accent that carries small text on this ground (AA) */
+  --accent-text:   var(--vermillion-deep);
+
+  color-scheme: light;
+}
+
+/* Dark — "studio at night". Scoped to the Fork (and anything else that asks). */
+[data-theme="dark"] {
+  --paper:         #181511;
+  --paper-deep:    #110f0c;
+  --card:          #211d18;
+  --card-bright:   #2a2520;
+  --ink:           #f3ecdc;
+  --ink-soft:      #d8cfbe;
+  --ink-mute:      #a89e8b;
+  --ink-faint:     #6f6757;
+
+  --vermillion:      #ff6149;
+  --vermillion-deep: #e6452f;
+  --cobalt:          #6f9bff;
+  --cobalt-deep:     #4d7ef0;
+  --marigold:        #ffc848;
+  --marigold-deep:   #f2b01e;
+  --viridian:        #41b594;
+  --viridian-deep:   #1f8a6d;
+  --plum:            #c977c6;
+
+  --vermillion-wash: #3a201b;
+  --cobalt-wash:     #1c2740;
+  --marigold-wash:   #3a2f12;
+  --viridian-wash:   #142e26;
+
+  --rule-hair: rgb(243 236 220 / 0.14);
+  --rule-soft: rgb(243 236 220 / 0.26);
+  --rule-bold: var(--ink);
+
+  --shadow-block:       4px 4px 0 #000;
+  --shadow-block-color: 4px 4px 0 var(--vermillion);
+  --shadow-soft: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 22px rgb(0 0 0 / 0.45);
+
+  --selection-bg: var(--marigold);
+  --selection-fg: #181511;
+
+  --accent-text: var(--vermillion);
+
+  /* Aliases must be re-declared here: var() inside a custom property is
+     substituted where the property is DECLARED, so the :root aliases
+     inherit already-resolved light values. Re-declaring makes them
+     re-resolve against this scope's dark primitives. */
+  --bg-page:       var(--paper);
+  --bg-sunken:     var(--paper-deep);
+  --surface-card:  var(--card);
+  --text-heading:  var(--ink);
+  --text-body:     var(--ink-soft);
+  --text-muted:    var(--ink-mute);
+  --text-faint:    var(--ink-faint);
+  --accent:        var(--vermillion);
+  --accent-deep:   var(--vermillion-deep);
+  --link:          var(--cobalt);
+  --link-deep:     var(--cobalt-deep);
+  --border:        var(--rule-hair);
+  --border-strong: var(--rule-bold);
+
+  color-scheme: dark;
+}
+
+/* --------------------------------------------------------------------------
+   2. Fauverism tokens — typography
+   -------------------------------------------------------------------------- */
+
+:root {
+  --font-serif:   "Newsreader", Georgia, "Times New Roman", serif;
+  --font-display: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --font-mono:    "Space Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --font-body:    var(--font-serif);
+  --font-heading: var(--font-display);
+  --font-label:   var(--font-mono);
+
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-base: 1.0625rem;
+  --text-md:   1.1875rem;
+  --text-lg:   1.375rem;
+  --text-xl:   1.75rem;
+  --text-2xl:  clamp(1.85rem, calc(1.4rem + 2.2vw), 2.75rem);
+  --text-3xl:  clamp(2.4rem, calc(1.6rem + 4vw), 4rem);
+  --text-4xl:  clamp(3rem, calc(1.8rem + 6vw), 6rem);
+
+  --fw-regular:  400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+  --fw-bold:     700;
+
+  --lh-tight:   1.04;
+  --lh-snug:    1.18;
+  --lh-normal:  1.4;
+  --lh-relaxed: 1.62;
+
+  --ls-tight:  -0.02em;
+  --ls-label:   0.14em;
+  --ls-wide:    0.04em;
+
+  --measure:        65ch;
+  --measure-narrow: 46ch;
+}
+
+/* --------------------------------------------------------------------------
+   3. Fauverism tokens — space, radius, borders, motion
+   -------------------------------------------------------------------------- */
+
+:root {
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.5rem;
+  --space-6:  2rem;
+  --space-7:  3rem;
+  --space-8:  4rem;
+  --space-9:  6rem;
+  --space-10: 8rem;
+
+  --page-max:  1180px;
+  --prose-max: 680px;
+  --gutter:    clamp(1.25rem, 5vw, 4rem);
+
+  --radius-none: 0;
+  --radius-sm:   3px;
+  --radius-md:   6px;
+  --radius-lg:   10px;
+  --radius-pill: 999px;
+
+  --border-hair: 1px;
+  --border-line: 1.5px;   /* default editorial frame */
+  --border-bold: 2.5px;   /* Rand-weight emphasis */
+
+  --ease-out:  cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-snap: cubic-bezier(0.34, 1.3, 0.64, 1);
+  --dur-fast:  120ms;
+  --dur-base:  200ms;
+  --dur-slow:  360ms;
+  --dur-draw:  900ms;  /* long strokes: S-curve draw-in, counters */
+
+  /* Site chrome */
+  --nav-h: 3.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   4. Reset & base
+   -------------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  scroll-padding-top: calc(var(--nav-h) + 1.5rem);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  background: var(--bg-page);
+  color: var(--text-body);
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  line-height: var(--lh-relaxed);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img,
+svg,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: var(--selection-bg);
+  color: var(--selection-fg);
+}
+
+/* Focus — cobalt, visible, everywhere */
+:focus-visible {
+  outline: 2px solid var(--cobalt);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* --------------------------------------------------------------------------
+   5. Utilities
+   -------------------------------------------------------------------------- */
+
+.wrap {
+  max-width: calc(var(--prose-max) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.wrap--wide {
+  max-width: calc(var(--page-max) + 2 * var(--gutter));
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  top: var(--space-3);
+  left: var(--space-3);
+  z-index: 100;
+  padding: var(--space-2) var(--space-4);
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-label);
+  font-size: var(--text-sm);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transform: translateY(calc(-100% - 1.5rem));
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+/* Marigold text-highlight — Fauverism's hand-set emphasis mark */
+.hl {
+  background-image: linear-gradient(transparent 58%, var(--marigold) 58%);
+}
+
+/* Generic animated-height disclosure.
+   Pair with a trigger button carrying aria-expanded + aria-controls.
+   grid-rows 0fr → 1fr animates height; visibility drops closed content
+   out of the accessibility tree after the collapse finishes. */
+.collapse {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--dur-slow) var(--ease-out);
+}
+
+.collapse-inner {
+  overflow: hidden;
+  min-height: 0;
+  visibility: hidden;
+  transition: visibility 0s linear var(--dur-slow);
+}
+
+.collapse.is-open {
+  grid-template-rows: 1fr;
+}
+
+.collapse.is-open .collapse-inner {
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+/* Scroll-triggered reveal. Hidden state only applies when JS is running
+   (html.js); IntersectionObserver adds .is-visible on entry. */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(1rem);
+  transition: opacity var(--dur-slow) var(--ease-out),
+              transform var(--dur-slow) var(--ease-out);
+}
+
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Entrance rise — stagger with --i on each element */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rise {
+  animation: rise var(--dur-slow) var(--ease-out) both;
+  animation-delay: calc(var(--i, 0) * 70ms);
+}
+
+/* --------------------------------------------------------------------------
+   6. Header, nav, progress
+   -------------------------------------------------------------------------- */
+
+.site-head {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--paper) 94%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: var(--border-hair) solid var(--rule-hair);
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  height: var(--nav-h);
+  max-width: calc(var(--page-max) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.wordmark {
+  padding-block: 0.6rem;
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-tight);
+  text-decoration: none;
+  white-space: nowrap;
+  color: var(--ink);
+}
+
+.wordmark-year {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: var(--fw-regular);
+  color: var(--accent-text);
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 2.5vw, 1.75rem);
+  list-style: none;
+  padding: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.nav-list::-webkit-scrollbar {
+  display: none;
+}
+
+.nav-link {
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-label);
+  text-decoration: none;
+  color: var(--text-muted);
+  padding: 0.95rem 0.5rem;
+  border-bottom: var(--border-line) solid transparent;
+  transition: color var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out);
+  white-space: nowrap;
+}
+
+.nav-link:hover {
+  color: var(--ink);
+}
+
+.nav-link.is-active,
+.nav-link[aria-current="true"] {
+  color: var(--accent-text);
+  border-bottom-color: var(--accent);
+}
+
+.progress {
+  height: 2px;
+  margin-top: -1px; /* sit on the hairline */
+}
+
+.progress-bar {
+  height: 100%;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  will-change: transform;
+}
+
+/* --------------------------------------------------------------------------
+   7. Sections & scaffold slugs
+   -------------------------------------------------------------------------- */
+
+.section {
+  background: var(--bg-page);
+  color: var(--text-body);
+  min-height: 55vh;
+  padding-block: clamp(var(--space-8), 12vw, var(--space-10));
+  border-top: var(--border-hair) solid var(--rule-hair);
+  display: grid;
+  align-content: start;
+}
+
+.section:focus {
+  outline: none;
+}
+
+.section--hero {
+  position: relative;
+  min-height: calc(92svh - var(--nav-h));
+  border-top: 0;
+  align-content: center;
+}
+
+/* --------------------------------------------------------------------------
+   8. Hero
+   -------------------------------------------------------------------------- */
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-label);
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-label);
+  color: var(--text-muted);
+}
+
+.eyebrow::before {
+  content: "";
+  flex: none;
+  width: 0.55em;
+  height: 0.55em;
+  background: var(--accent);
+}
+
+.hero-title {
+  margin-top: var(--space-5);
+  font-family: var(--font-heading);
+  font-size: var(--text-4xl);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-tight);
+  letter-spacing: -0.03em;
+  color: var(--text-heading);
+}
+
+.hero-year {
+  color: var(--accent);
+}
+
+.hero-tagline {
+  margin-top: var(--space-4);
+  font-family: var(--font-serif);
+  font-size: var(--text-xl);
+  font-weight: var(--fw-medium);
+  font-style: italic;
+  line-height: var(--lh-snug);
+  color: var(--text-heading);
+  max-width: 24ch;
+}
+
+.hero-byline {
+  margin-top: var(--space-5);
+  font-family: var(--font-label);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+.hero-rule {
+  width: var(--space-8);
+  margin: var(--space-6) 0 0;
+  border: 0;
+  border-top: var(--border-bold) solid var(--rule-bold);
+}
+
+.hero-lede {
+  margin-top: var(--space-6);
+  font-size: var(--text-xl);
+  line-height: var(--lh-normal);
+  color: var(--text-body);
+  max-width: var(--measure-narrow);
+}
+
+/* --- Intro chips (disclosure row) --- */
+
+.chips {
+  margin-top: var(--space-7);
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.chip {
+  font-family: var(--font-label);
+  font-size: var(--text-sm);
+  line-height: 1.2;
+  color: var(--text-heading);
+  background: transparent;
+  border: var(--border-line) solid var(--ink);
+  border-radius: var(--radius-pill);
+  padding: 0.75rem 1.15rem;
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease-out),
+              color var(--dur-fast) var(--ease-out),
+              box-shadow var(--dur-base) var(--ease-out),
+              transform var(--dur-base) var(--ease-out);
+}
+
+.chip:hover {
+  background: var(--vermillion-wash);
+}
+
+.chip:active {
+  transform: translateY(1px);
+}
+
+.chip[aria-expanded="true"] {
+  background: var(--ink);
+  color: var(--paper);
+  box-shadow: var(--shadow-block-color);
+  transform: translate(-2px, -2px);
+}
+
+/* Panel height animation comes from the shared .collapse pattern. */
+.chip-answer {
+  margin-top: var(--space-5);
+  padding: var(--space-2) 0 var(--space-2) var(--space-5);
+  border-left: var(--border-bold) solid var(--accent);
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  color: var(--text-body);
+  max-width: var(--measure-narrow);
+}
+
+/* --- Scroll cue --- */
+
+.scroll-cue {
+  position: absolute;
+  left: 50%;
+  bottom: var(--space-5);
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  text-decoration: none;
+}
+
+.scroll-cue-label {
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-label);
+  color: var(--text-muted);
+}
+
+.scroll-cue-line {
+  position: relative;
+  width: var(--border-line);
+  height: 44px;
+  background: var(--rule-hair);
+  overflow: hidden;
+}
+
+.scroll-cue-line::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  background: var(--accent);
+  animation: cue-drop 2.4s var(--ease-out) infinite;
+}
+
+@keyframes cue-drop {
+  0% {
+    transform: translateY(-12px);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(46px);
+    opacity: 0;
+  }
+}
+
+/* Section titles end on a vermillion period — the wordmark's punctuation,
+   carried through as a running mark. */
+.tl-title::after,
+.fork-title::after,
+.data-title::after,
+.humans-title::after,
+.about-title::after {
+  content: ".";
+  color: var(--accent);
+}
+
+/* --------------------------------------------------------------------------
+   9. Timeline — scrollytelling engine
+   One template, six beats: only the data varies between beats, never the
+   design (Tufte: show data variation, not design variation).
+   -------------------------------------------------------------------------- */
+
+.section--timeline {
+  padding-top: var(--space-9);
+}
+
+.tl-head {
+  margin-bottom: var(--space-8);
+}
+
+.tl-title {
+  margin-top: var(--space-4);
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+  color: var(--text-heading);
+}
+
+/* The spine: a hairline track (::before) and a vermillion fill (::after)
+   scaled by --tl-progress from JS. One mark, one meaning: how far into
+   the sequence you are. */
+.tl {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.tl-beat {
+  position: relative;
+  padding-block: var(--space-7);
+}
+
+/* Sticky year — mobile: a bar pinned under the site nav */
+.tl-year {
+  position: sticky;
+  top: var(--nav-h);
+  z-index: 10;
+  background: var(--bg-page);
+  font-family: var(--font-mono);
+  font-size: var(--text-xl);
+  line-height: 1.3;
+  color: var(--text-faint);
+  padding-block: var(--space-2);
+  border-bottom: var(--border-hair) solid var(--rule-hair);
+  margin-bottom: var(--space-5);
+  transition: color var(--dur-base) var(--ease-out);
+}
+
+.tl-year::after {
+  content: ".";
+  color: inherit;
+}
+
+.tl-beat.is-active .tl-year {
+  color: var(--text-heading);
+}
+
+.tl-beat.is-active .tl-year::after {
+  color: var(--accent);
+}
+
+/* Desktop: year pinned left, content column right, spine between them */
+@media (min-width: 860px) {
+  .tl {
+    padding-left: var(--space-6);
+  }
+
+  .tl::before,
+  .tl::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--border-line);
+    height: 100%;
+    background: var(--rule-hair);
+  }
+
+  .tl::after {
+    background: var(--accent);
+    transform: scaleY(var(--tl-progress, 0));
+    transform-origin: 0 0;
+  }
+
+  .tl-beat {
+    display: grid;
+    grid-template-columns: minmax(9rem, 12rem) minmax(0, 1fr);
+    column-gap: clamp(var(--space-6), 5vw, var(--space-9));
+    min-height: 70vh;
+    padding-block: var(--space-8);
+  }
+
+  /* Beat node on the spine — a modernist square, vermillion when active */
+  .tl-beat::before {
+    content: "";
+    position: absolute;
+    top: calc(var(--space-8) + 0.45em);
+    left: calc(-1 * var(--space-6) - 3.75px);
+    width: 9px;
+    height: 9px;
+    background: var(--bg-page);
+    border: var(--border-line) solid var(--rule-soft);
+    transition: background-color var(--dur-base) var(--ease-out),
+                border-color var(--dur-base) var(--ease-out);
+  }
+
+  .tl-beat.is-active::before {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .tl-year {
+    position: sticky;
+    top: calc(var(--nav-h) + var(--space-7));
+    align-self: start;
+    z-index: auto;
+    background: none;
+    font-size: clamp(2.2rem, 4vw, 3.4rem);
+    line-height: 1;
+    padding-block: 0;
+    border-bottom: 0;
+    margin-bottom: 0;
+  }
+}
+
+/* --- Milestone card: headline · body · stat · dig-deeper --- */
+
+.tl-card {
+  max-width: var(--prose-max);
+}
+
+.tl-headline {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--ls-tight);
+  color: var(--text-heading);
+  max-width: 24ch;
+}
+
+.tl-headline-year {
+  font-family: var(--font-mono);
+  font-size: 0.6em;
+  font-weight: var(--fw-regular);
+  letter-spacing: 0;
+  color: var(--accent-text);
+  display: block;
+  margin-bottom: var(--space-2);
+}
+
+.tl-body {
+  margin-top: var(--space-5);
+  font-size: var(--text-lg);
+}
+
+.tl-body p + p {
+  margin-top: var(--space-4);
+}
+
+/* Inline stat figure — Tufte: label the data where it sits, carry the
+   source with the number, spend no ink on decoration. */
+.tl-stat {
+  margin-block: var(--space-6);
+  padding-top: var(--space-4);
+  border-top: var(--border-hair) solid var(--rule-soft);
+  max-width: var(--measure-narrow);
+}
+
+.tl-stat-value {
+  font-family: var(--font-mono);
+  font-size: var(--text-3xl);
+  line-height: var(--lh-tight);
+  color: var(--text-heading);
+}
+
+.tl-stat-unit {
+  font-size: 0.55em;
+  color: var(--text-muted);
+}
+
+.tl-stat-caption {
+  margin-top: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  line-height: var(--lh-normal);
+  letter-spacing: var(--ls-wide);
+  color: var(--text-muted);
+}
+
+.tl-stat-source {
+  color: var(--text-muted);
+}
+
+/* Stat variants: a pull-quote beat (2032) and the paradigm arc (2035).
+   Same figure anatomy — value + caption + rule — different value voice. */
+.tl-stat--quote .tl-stat-value {
+  font-family: var(--font-serif);
+  font-size: var(--text-2xl);
+  font-weight: var(--fw-medium);
+  font-style: italic;
+  line-height: var(--lh-snug);
+  max-width: 22ch;
+}
+
+.tl-stat--arc .tl-stat-value {
+  font-size: var(--text-lg);
+  line-height: var(--lh-normal);
+  letter-spacing: var(--ls-wide);
+  max-width: var(--measure-narrow);
+}
+
+.tl-stat-caption a {
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.tl-stat-caption a:hover {
+  color: var(--link-deep);
+}
+
+/* Hand-off into the Fork — the 2040 beat's last line */
+.tl-handoff {
+  margin-top: var(--space-7);
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-tight);
+}
+
+.tl-handoff a {
+  color: var(--accent-text);
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 4px;
+  transition: text-decoration-thickness var(--dur-fast) var(--ease-out);
+}
+
+.tl-handoff a:hover {
+  text-decoration-thickness: 3px;
+}
+
+/* --- Footnote pattern: superscript marker → inline aside --- */
+
+.fn-ref {
+  position: relative;
+  font-family: var(--font-mono);
+  font-size: 0.7em;
+  line-height: 1;
+  vertical-align: super;
+  color: var(--accent-text);
+  background: transparent;
+  border: 0;
+  padding: 0.15em 0.45em;
+  margin-left: 0.15em;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: background-color var(--dur-fast) var(--ease-out),
+              color var(--dur-fast) var(--ease-out);
+}
+
+.fn-ref::after {
+  /* invisible 44px-class hit area around the superscript */
+  content: "";
+  position: absolute;
+  inset: -14px -12px;
+}
+
+.fn-ref:hover {
+  background: var(--vermillion-wash);
+}
+
+.fn-ref[aria-expanded="true"] {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.fn-content {
+  margin-top: var(--space-5);
+  padding-left: var(--space-4);
+  border-left: var(--border-line) solid var(--rule-soft);
+  font-size: var(--text-base);
+  color: var(--text-body);
+  max-width: var(--measure-narrow);
+}
+
+.fn-num {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--accent-text);
+  margin-right: var(--space-1);
+}
+
+/* --------------------------------------------------------------------------
+   10. The Fork — dark ground, four cards, one choice
+   Uses the "studio at night" token remap via [data-theme="dark"].
+   -------------------------------------------------------------------------- */
+
+.section--fork {
+  padding-block: clamp(var(--space-9), 14vw, calc(var(--space-10) + var(--space-6)));
+}
+
+.fork-head {
+  max-width: var(--prose-max);
+  margin-bottom: var(--space-8);
+}
+
+.fork-title {
+  margin-top: var(--space-4);
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+  color: var(--text-heading);
+}
+
+.fork-lede {
+  margin-top: var(--space-5);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--text-lg);
+  line-height: var(--lh-normal);
+  color: var(--text-heading);
+  max-width: var(--measure);
+}
+
+/* --- Path cards --- */
+
+.fork-paths {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: var(--space-4);
+}
+
+.path-card {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+  text-align: left;
+  font-family: inherit;
+  background: var(--surface-card);
+  color: var(--text-body);
+  border: var(--border-line) solid var(--rule-bold);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  cursor: pointer;
+  transition: transform var(--dur-base) var(--ease-out),
+              box-shadow var(--dur-base) var(--ease-out),
+              border-color var(--dur-base) var(--ease-out),
+              opacity var(--dur-base) var(--ease-out),
+              filter var(--dur-base) var(--ease-out);
+}
+
+.path-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-block);
+}
+
+.path-card:active {
+  transform: none;
+  box-shadow: none;
+}
+
+.path-index {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--ls-label);
+  color: var(--accent-text);
+}
+
+.path-name {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-tight);
+  line-height: var(--lh-snug);
+  color: var(--text-heading);
+}
+
+.path-hook {
+  font-family: var(--font-serif);
+  font-size: var(--text-base);
+  line-height: var(--lh-normal);
+}
+
+.path-cta {
+  margin-top: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-label);
+  color: var(--text-muted);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.path-card:hover .path-cta {
+  color: var(--accent-text);
+}
+
+/* Selected card: vermillion frame + hard color offset. The rest recede. */
+.path-card.is-selected {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-block-color);
+  transform: translate(-2px, -2px);
+}
+
+.path-card.is-selected .path-cta {
+  color: var(--accent-text);
+}
+
+.fork-paths[data-selected] .path-card:not(.is-selected) {
+  opacity: 0.35;
+  filter: grayscale(0.6);
+  transform: scale(0.985);
+  box-shadow: none;
+}
+
+.fork-paths[data-selected] .path-card:not(.is-selected):hover,
+.fork-paths[data-selected] .path-card:not(.is-selected):focus-visible {
+  opacity: 0.75;
+  filter: none;
+  transform: none;
+}
+
+/* --- Outcome panels --- */
+
+.outcome-body {
+  max-width: var(--prose-max);
+  padding-top: var(--space-8);
+}
+
+.outcome-kicker {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-label);
+  color: var(--accent-text);
+}
+
+.outcome-block {
+  margin-top: var(--space-6);
+}
+
+.outcome-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: var(--fw-regular);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-label);
+  color: var(--text-muted);
+}
+
+.outcome-label::before {
+  content: "";
+  flex: none;
+  width: 0.55em;
+  height: 0.55em;
+  background: var(--accent);
+}
+
+.outcome-block p {
+  margin-top: var(--space-3);
+  font-size: var(--text-lg);
+  color: var(--text-body);
+}
+
+.fork-back {
+  margin-top: var(--space-7);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--text-heading);
+  background: transparent;
+  border: var(--border-line) solid var(--rule-soft);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1.25rem;
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out);
+}
+
+.fork-back:hover {
+  background: var(--vermillion-wash);
+  border-color: var(--accent);
+}
+
+/* --------------------------------------------------------------------------
+   11. Data — the dashboard
+   One figure template (Tufte: data varies, design doesn't): bold top rule,
+   title, plain-language caption, the mark, a note, a source, a table.
+   -------------------------------------------------------------------------- */
+
+.data-head {
+  max-width: var(--prose-max);
+}
+
+.data-title {
+  margin-top: var(--space-4);
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+  color: var(--text-heading);
+}
+
+.data-lede {
+  margin-top: var(--space-5);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--text-lg);
+  line-height: var(--lh-normal);
+  color: var(--text-heading);
+  max-width: var(--measure);
+}
+
+.viz {
+  margin: var(--space-9) 0 0;
+  padding-top: var(--space-4);
+  border-top: var(--border-bold) solid var(--rule-bold);
+  max-width: 56rem;
+}
+
+.viz-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-tight);
+  color: var(--text-heading);
+}
+
+.viz-sub {
+  margin-top: var(--space-2);
+  font-size: var(--text-base);
+  color: var(--text-body);
+  max-width: var(--measure);
+}
+
+.viz-canvas {
+  position: relative;
+  margin-top: var(--space-5);
+}
+
+.viz-canvas--roles      { height: clamp(180px, 30vw, 220px); }
+.viz-canvas--automation { height: clamp(300px, 48vw, 400px); }
+.viz-canvas--skills     { height: clamp(220px, 34vw, 260px); }
+
+.viz-note {
+  margin-top: var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  line-height: var(--lh-normal);
+  letter-spacing: var(--ls-wide);
+  color: var(--text-muted);
+  max-width: var(--measure);
+}
+
+.viz-source {
+  margin-top: var(--space-1);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--ls-wide);
+  color: var(--text-muted);
+}
+
+/* Table twin — visible, compact, mono numerals */
+.viz-table {
+  margin-top: var(--space-4);
+}
+
+.viz-table summary {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-label);
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.85rem 0.25rem 0.85rem 0;
+}
+
+.viz-table summary:hover {
+  color: var(--text-heading);
+}
+
+.viz-table table {
+  width: 100%;
+  margin-top: var(--space-3);
+  border-collapse: collapse;
+}
+
+.viz-table th {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: var(--fw-regular);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+  text-align: left;
+  color: var(--text-muted);
+  padding: var(--space-2) var(--space-3) var(--space-2) 0;
+  border-bottom: var(--border-line) solid var(--rule-soft);
+}
+
+.viz-table td {
+  font-size: var(--text-sm);
+  color: var(--text-body);
+  padding: var(--space-2) var(--space-3) var(--space-2) 0;
+  border-bottom: var(--border-hair) solid var(--rule-hair);
+}
+
+.viz-table td.num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- S-curves (inline SVG) --- */
+
+.viz-svg {
+  margin-top: var(--space-5);
+}
+
+.viz-svg svg {
+  width: 100%;
+  height: auto;
+}
+
+.curve {
+  stroke: var(--accent);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.curve-1 { opacity: 0.30; }
+.curve-2 { opacity: 0.45; }
+.curve-3 { opacity: 0.60; }
+.curve-4 { opacity: 0.80; }
+.curve-5 { opacity: 1; }
+
+/* Draw-in on reveal; JS-gated so no-JS never hides the data */
+.js .viz--curves .curve {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset var(--dur-draw) var(--ease-out);
+}
+
+.js .viz--curves .curve-2 { transition-delay: 120ms; }
+.js .viz--curves .curve-3 { transition-delay: 240ms; }
+.js .viz--curves .curve-4 { transition-delay: 360ms; }
+.js .viz--curves .curve-5 { transition-delay: 480ms; }
+
+.js .viz--curves.is-visible .curve {
+  stroke-dashoffset: 0;
+}
+
+.curve-axis {
+  stroke: var(--rule-soft);
+  stroke-width: 1;
+}
+
+.curve-ticks text,
+.curve-labels text {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+
+.curve-ticks text {
+  fill: var(--text-muted);
+}
+
+.curve-labels text {
+  fill: var(--text-heading);
+}
+
+/* --- Churn counters --- */
+
+.churn {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: var(--space-5);
+  margin-top: var(--space-6);
+}
+
+.churn-value {
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+  color: var(--text-heading);
+}
+
+.churn-value--out { color: var(--accent-deep); }
+.churn-value--in  { color: var(--link); }
+
+.churn-sign {
+  font-size: 0.6em;
+  vertical-align: 0.28em;
+  margin-right: 0.06em;
+}
+
+.churn-unit {
+  font-size: 0.6em;
+  color: var(--text-muted);
+  margin-left: 0.04em;
+}
+
+.churn-label {
+  margin-top: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-label);
+  color: var(--text-muted);
+}
+
+/* --- Wage-premium slab: full-bleed dark band --- */
+
+.stat-slab {
+  margin-top: var(--space-10);
+  padding: var(--space-9) var(--gutter);
+  background: var(--bg-page);
+  color: var(--text-body);
+  text-align: center;
+}
+
+.stat-slab-kicker {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-label);
+  color: var(--accent-text);
+}
+
+.stat-slab-value {
+  margin-top: var(--space-4);
+  font-family: var(--font-heading);
+  font-size: clamp(4rem, 12vw, 8rem);
+  font-weight: var(--fw-bold);
+  line-height: 1;
+  letter-spacing: var(--ls-tight);
+  color: var(--text-heading);
+}
+
+.stat-slab-line {
+  margin: var(--space-5) auto 0;
+  font-size: var(--text-md);
+  max-width: 36ch;
+}
+
+.stat-slab-source {
+  margin-top: var(--space-5);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--ls-wide);
+  color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   12. Humans — the survival guide
+   Eight hairline rows, one per durable capability. Manifesto, not card grid.
+   -------------------------------------------------------------------------- */
+
+.humans-head {
+  max-width: var(--prose-max);
+  margin-bottom: var(--space-8);
+}
+
+.humans-title {
+  margin-top: var(--space-4);
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+  color: var(--text-heading);
+}
+
+.humans-lede {
+  margin-top: var(--space-5);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--text-lg);
+  line-height: var(--lh-normal);
+  color: var(--text-heading);
+  max-width: var(--measure-narrow);
+}
+
+.humans-lede em {
+  font-style: italic;
+}
+
+.skills {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: 56rem;
+}
+
+.skill {
+  border-top: var(--border-hair) solid var(--rule-soft);
+  padding-block: var(--space-6);
+}
+
+.skill:first-child {
+  border-top: var(--border-bold) solid var(--rule-bold);
+}
+
+.skill-head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+}
+
+.skill-index {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--ls-label);
+  color: var(--accent-text);
+}
+
+.skill-name {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-tight);
+  line-height: var(--lh-snug);
+  color: var(--text-heading);
+}
+
+.skill-def {
+  margin-top: var(--space-3);
+  font-size: var(--text-md);
+  color: var(--text-body);
+  max-width: var(--measure);
+}
+
+.skill-why {
+  margin-top: var(--space-3);
+  font-size: var(--text-base);
+  color: var(--text-body);
+  max-width: var(--measure);
+}
+
+.skill-why-label {
+  display: block;
+  margin-bottom: var(--space-1);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-label);
+  color: var(--text-muted);
+}
+
+.skill-cite {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--ls-wide);
+  color: var(--text-muted);
+}
+
+/* Desktop: index+name left, definition+why right — an editorial table */
+@media (min-width: 860px) {
+  .skill {
+    display: grid;
+    grid-template-columns: 16rem minmax(0, 1fr);
+    column-gap: clamp(var(--space-6), 5vw, var(--space-8));
+  }
+
+  .skill-head {
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .skill-def {
+    margin-top: 0;
+  }
+}
+
+/* --- Closing call to action --- */
+
+.humans-cta {
+  margin-top: var(--space-9);
+  padding-top: var(--space-6);
+  border-top: var(--border-bold) solid var(--rule-bold);
+  max-width: var(--prose-max);
+}
+
+.humans-cta-lead {
+  font-family: var(--font-serif);
+  font-size: var(--text-xl);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-snug);
+  color: var(--text-heading);
+}
+
+.humans-cta-text {
+  margin-top: var(--space-5);
+  font-size: var(--text-md);
+  color: var(--text-body);
+}
+
+/* --------------------------------------------------------------------------
+   13. About — coda, methodology, sources apparatus, footer
+   -------------------------------------------------------------------------- */
+
+.about-head {
+  margin-bottom: var(--space-7);
+}
+
+.about-title {
+  margin-top: var(--space-4);
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+  color: var(--text-heading);
+}
+
+.coda p {
+  font-size: var(--text-lg);
+  color: var(--text-body);
+}
+
+.coda p + p {
+  margin-top: var(--space-4);
+}
+
+.coda-byline {
+  margin-top: var(--space-6);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: var(--ls-wide);
+  color: var(--text-muted);
+}
+
+.apparatus {
+  margin-top: var(--space-8);
+  padding-top: var(--space-5);
+  border-top: var(--border-bold) solid var(--rule-bold);
+}
+
+.apparatus:focus {
+  outline: none;
+}
+
+.apparatus-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-tight);
+  color: var(--text-heading);
+}
+
+.apparatus > p {
+  margin-top: var(--space-4);
+  font-size: var(--text-base);
+  color: var(--text-body);
+}
+
+/* --- Sources list --- */
+
+.src-list {
+  list-style: none;
+  margin: var(--space-5) 0 0;
+  padding: 0;
+  counter-reset: src;
+}
+
+.src {
+  position: relative;
+  padding: var(--space-4) 0 var(--space-4) var(--space-7);
+  border-bottom: var(--border-hair) solid var(--rule-hair);
+  counter-increment: src;
+  transition: background-color var(--dur-slow) var(--ease-out);
+}
+
+.src::before {
+  content: counter(src, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: calc(var(--space-4) + 0.2em);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--ls-wide);
+  color: var(--accent-text);
+}
+
+/* Landing here from a footnote link: a brief marigold flash of place */
+.src:target {
+  background-color: var(--marigold-wash);
+}
+
+.src-link {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--fw-medium);
+  color: var(--text-heading);
+  text-decoration: underline;
+  text-decoration-color: var(--rule-soft);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: text-decoration-color var(--dur-fast) var(--ease-out),
+              color var(--dur-fast) var(--ease-out);
+}
+
+.src-link:hover {
+  color: var(--link);
+  text-decoration-color: var(--link);
+  text-decoration-thickness: 2px;
+}
+
+.src-what,
+.src-cited {
+  display: block;
+  margin-top: var(--space-1);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  line-height: var(--lh-normal);
+  letter-spacing: var(--ls-wide);
+  color: var(--text-muted);
+}
+
+.src-cited {
+  color: var(--text-muted);
+}
+
+.src-cited a {
+  color: var(--accent-text);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.src-cited a:hover {
+  border-bottom-color: var(--accent);
+}
+
+/* --- Footnote source rows (inside the dig-deeper asides) --- */
+
+.fn-src {
+  margin-top: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--ls-wide);
+}
+
+.fn-src a {
+  color: var(--accent-text);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule-soft);
+  padding-bottom: 1px;
+  transition: border-color var(--dur-fast) var(--ease-out);
+}
+
+.fn-src a:hover {
+  border-bottom-color: var(--accent);
+}
+
+/* Stat sources that link down to the apparatus */
+.tl-stat-source a,
+.stat-slab-source a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* --- Footer --- */
+
+.site-foot {
+  border-top: var(--border-hair) solid var(--rule-hair);
+  background: var(--bg-sunken);
+  padding-block: var(--space-8);
+}
+
+.foot-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-base);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-tight);
+  color: var(--text-heading);
+}
+
+.foot-tagline {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: var(--fw-regular);
+  color: var(--text-muted);
+}
+
+.foot-meta {
+  margin-top: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--ls-wide);
+  color: var(--text-muted);
+}
+
+.foot-proof {
+  margin-top: var(--space-4);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  max-width: var(--measure);
+}
+
+/* --------------------------------------------------------------------------
+   14. Reduced motion — kill it all, keep everything readable
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+    scroll-behavior: auto !important;
+  }
+
+  .scroll-cue-line::after {
+    animation: none;
+    transform: translateY(17px); /* static tick, mid-line */
+    opacity: 1;
+  }
+
+  /* Reveal instantly, no transforms */
+  .js .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
